@@ -7,7 +7,7 @@ export default async function upsertCategory(input) {
     const category = await db.category.upsert({
       where: {
         id: Number(input?.id) || 999999999999,
-      },
+      },  
       update: {
         name: input.name,
       },

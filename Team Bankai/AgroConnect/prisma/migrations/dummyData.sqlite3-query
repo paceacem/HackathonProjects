@@ -1,0 +1,158 @@
+-- database: ../db.sqlite3
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+INSERT INTO Category (name, createdAt, updatedAt)
+VALUES 
+  ('Vegetables', datetime('now'), datetime('now')),
+  ('Grains', datetime('now'), datetime('now')),
+  ('Fruits', datetime('now'), datetime('now'));
+
+-- User 1: Farmer John
+INSERT INTO User (name, email, phone, password, admin, createdAt, updatedAt)
+VALUES 
+  ('Farmer John', 'farmer.john@example.com', '1234567890', 'password123', false, datetime('now'), datetime('now'));
+
+-- User 2: Farmer Mary
+INSERT INTO User (name, email, phone, password, admin, createdAt, updatedAt)
+VALUES 
+  ('Farmer Mary', 'farmer.mary@example.com', '0987654321', 'password456', false, datetime('now'), datetime('now'));
+
+-- Location for Farmer John
+INSERT INTO Location (latitude, longitude, userId, createdAt, updatedAt)
+VALUES 
+  (27.7165, 85.3220, 1, datetime('now'), datetime('now'));
+
+-- Location for Farmer Mary
+INSERT INTO Location (latitude, longitude, userId, createdAt, updatedAt)
+VALUES 
+  (27.7180, 85.3260, 2, datetime('now'), datetime('now'));
+
+-- Products for Farmer John
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Carrots', 'Freshly harvested carrots', 1.5, 'In Stock', 'https://example.com/carrots.jpg', 1, 1, 1, datetime('now'), datetime('now')),
+  ('Wheat', 'High-quality wheat grains', 2.0, 'In Stock', 'https://example.com/wheat.jpg', 1, 2, 1, datetime('now'), datetime('now')),
+  ('Apples', 'Organic apples from our orchard', 3.0, 'In Stock', 'https://example.com/apples.jpg', 1, 3, 1, datetime('now'), datetime('now'));
+
+-- Products for Farmer Mary
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Tomatoes', 'Ripe, juicy tomatoes', 1.2, 'In Stock', 'https://example.com/tomatoes.jpg', 2, 1, 2, datetime('now'), datetime('now')),
+  ('Rice', 'Premium quality rice grains', 2.5, 'In Stock', 'https://example.com/rice.jpg', 2, 2, 2, datetime('now'), datetime('now')),
+  ('Bananas', 'Sweet bananas ready for sale', 1.8, 'In Stock', 'https://example.com/bananas.jpg', 2, 3, 2, datetime('now'), datetime('now'));
+
+-- Additional products for Farmer John
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Potatoes', 'High-yielding potatoes', 1.0, 'In Stock', 'https://example.com/potatoes.jpg', 1, 1, 1, datetime('now'), datetime('now')),
+  ('Barley', 'Organic barley grains', 1.8, 'In Stock', 'https://example.com/barley.jpg', 1, 2, 1, datetime('now'), datetime('now'));
+
+-- Additional products for Farmer Mary
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Onions', 'Farm fresh onions', 1.5, 'In Stock', 'https://example.com/onions.jpg', 2, 1, 2, datetime('now'), datetime('now')),
+  ('Mangoes', 'Seasonal mangoes', 2.5, 'In Stock', 'https://example.com/mangoes.jpg', 2, 3, 2, datetime('now'), datetime('now'));
+
+
+-- Users within 5 km
+INSERT INTO User (name, email, phone, password, admin, createdAt, updatedAt)
+VALUES 
+  ('Farmer A', 'farmer.a@example.com', '1111111111', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer B', 'farmer.b@example.com', '2222222222', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer C', 'farmer.c@example.com', '3333333333', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer D', 'farmer.d@example.com', '4444444444', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer E', 'farmer.e@example.com', '5555555555', 'password123', false, datetime('now'), datetime('now'));
+
+-- Users 10+ km away
+INSERT INTO User (name, email, phone, password, admin, createdAt, updatedAt)
+VALUES 
+  ('Farmer X', 'farmer.x@example.com', '6666666666', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer Y', 'farmer.y@example.com', '7777777777', 'password123', false, datetime('now'), datetime('now')),
+  ('Farmer Z', 'farmer.z@example.com', '8888888888', 'password123', false, datetime('now'), datetime('now'));
+
+
+-- Locations within 5 km
+INSERT INTO Location (latitude, longitude, userId, createdAt, updatedAt)
+VALUES 
+  (27.7142, 85.3280, 3, datetime('now'), datetime('now')),
+  (27.7205, 85.3211, 4, datetime('now'), datetime('now')),
+  (27.7156, 85.3302, 5, datetime('now'), datetime('now')),
+  (27.7188, 85.3265, 6, datetime('now'), datetime('now')),
+  (27.7190, 85.3233, 7, datetime('now'), datetime('now'));
+
+-- Locations 10+ km away
+INSERT INTO Location (latitude, longitude, userId, createdAt, updatedAt)
+VALUES 
+  (27.6872, 85.3450, 8, datetime('now'), datetime('now')), -- Farmer X
+  (27.7300, 85.4000, 9, datetime('now'), datetime('now')), -- Farmer Y
+  (27.6800, 85.4500, 10, datetime('now'), datetime('now')); -- Farmer Z
+
+
+-- Products for Farmer A
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Cabbage', 'Fresh cabbages from the farm', 1.0, 'In Stock', 'https://example.com/cabbage.jpg', 3, 1, 3, datetime('now'), datetime('now')),
+  ('Corn', 'Sweet corn ready for harvest', 1.5, 'In Stock', 'https://example.com/corn.jpg', 3, 2, 3, datetime('now'), datetime('now')),
+  ('Mangoes', 'Delicious seasonal mangoes', 3.0, 'In Stock', 'https://example.com/mangoes.jpg', 3, 3, 3, datetime('now'), datetime('now')),
+  ('Potatoes', 'High-quality potatoes', 1.2, 'In Stock', 'https://example.com/potatoes.jpg', 3, 1, 3, datetime('now'), datetime('now')),
+  ('Barley', 'Organic barley grains', 2.5, 'In Stock', 'https://example.com/barley.jpg', 3, 2, 3, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Broccoli', 'Fresh broccoli from local farm', 1.8, 'In Stock', 'https://example.com/broccoli.jpg', 4, 1, 4, datetime('now'), datetime('now')),
+  ('Rice', 'High-quality rice grains', 2.0, 'In Stock', 'https://example.com/rice.jpg', 4, 2, 4, datetime('now'), datetime('now')),
+  ('Pineapples', 'Juicy tropical pineapples', 3.5, 'In Stock', 'https://example.com/pineapples.jpg', 4, 3, 4, datetime('now'), datetime('now')),
+  ('Capsicum', 'Organic green capsicum', 1.5, 'In Stock', 'https://example.com/capsicum.jpg', 4, 1, 4, datetime('now'), datetime('now')),
+  ('Millet', 'Nutrient-rich millet grains', 2.5, 'In Stock', 'https://example.com/millet.jpg', 4, 2, 4, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Cucumbers', 'Crisp and fresh cucumbers', 1.2, 'In Stock', 'https://example.com/cucumbers.jpg', 5, 1, 5, datetime('now'), datetime('now')),
+  ('Barley', 'Freshly harvested barley', 2.3, 'In Stock', 'https://example.com/barley.jpg', 5, 2, 5, datetime('now'), datetime('now')),
+  ('Papayas', 'Sweet and ripe papayas', 3.0, 'In Stock', 'https://example.com/papayas.jpg', 5, 3, 5, datetime('now'), datetime('now')),
+  ('Eggplants', 'Locally grown eggplants', 1.4, 'In Stock', 'https://example.com/eggplants.jpg', 5, 1, 5, datetime('now'), datetime('now')),
+  ('Quinoa', 'Organic quinoa seeds', 3.0, 'In Stock', 'https://example.com/quinoa.jpg', 5, 2, 5, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Spinach', 'Freshly picked spinach', 1.1, 'In Stock', 'https://example.com/spinach.jpg', 6, 1, 6, datetime('now'), datetime('now')),
+  ('Oats', 'Premium-quality oats', 2.0, 'In Stock', 'https://example.com/oats.jpg', 6, 2, 6, datetime('now'), datetime('now')),
+  ('Grapes', 'Delicious seedless grapes', 3.5, 'In Stock', 'https://example.com/grapes.jpg', 6, 3, 6, datetime('now'), datetime('now')),
+  ('Peppers', 'Spicy red peppers', 1.7, 'In Stock', 'https://example.com/peppers.jpg', 6, 1, 6, datetime('now'), datetime('now')),
+  ('Lentils', 'Rich and healthy lentils', 2.8, 'In Stock', 'https://example.com/lentils.jpg', 6, 2, 6, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Tomatoes', 'Farm-fresh tomatoes', 1.2, 'In Stock', 'https://example.com/tomatoes.jpg', 7, 1, 7, datetime('now'), datetime('now')),
+  ('Wheat', 'High-grade wheat', 2.2, 'In Stock', 'https://example.com/wheat.jpg', 7, 2, 7, datetime('now'), datetime('now')),
+  ('Bananas', 'Ripe and sweet bananas', 1.8, 'In Stock', 'https://example.com/bananas.jpg', 7, 3, 7, datetime('now'), datetime('now')),
+  ('Cauliflower', 'Fresh and clean cauliflower', 1.5, 'In Stock', 'https://example.com/cauliflower.jpg', 7, 1, 7, datetime('now'), datetime('now')),
+  ('Sorghum', 'Organic sorghum grains', 3.0, 'In Stock', 'https://example.com/sorghum.jpg', 7, 2, 7, datetime('now'), datetime('now'));
+
+
+-- Products for Farmer X (10+ km away)
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Peanuts', 'Farm-fresh peanuts', 2.0, 'In Stock', 'https://example.com/peanuts.jpg', 8, 2, 8, datetime('now'), datetime('now')),
+  ('Guavas', 'Sweet guavas from the farm', 2.5, 'In Stock', 'https://example.com/guavas.jpg', 8, 3, 8, datetime('now'), datetime('now')),
+  ('Spinach', 'Organic spinach leaves', 1.5, 'In Stock', 'https://example.com/spinach.jpg', 8, 1, 8, datetime('now'), datetime('now')),
+  ('Soybeans', 'Rich soybeans for sale', 3.0, 'In Stock', 'https://example.com/soybeans.jpg', 8, 2, 8, datetime('now'), datetime('now')),
+  ('Oranges', 'Citrus oranges from the farm', 3.5, 'In Stock', 'https://example.com/oranges.jpg', 8, 3, 8, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Beets', 'Rich red beets', 1.3, 'In Stock', 'https://example.com/beets.jpg', 9, 1, 9, datetime('now'), datetime('now')),
+  ('Corn', 'Sweet corn from fertile soil', 2.1, 'In Stock', 'https://example.com/corn.jpg', 9, 2, 9, datetime('now'), datetime('now')),
+  ('Lychees', 'Exotic and fresh lychees', 4.0, 'In Stock', 'https://example.com/lychees.jpg', 9, 3, 9, datetime('now'), datetime('now')),
+  ('Turnips', 'Locally grown turnips', 1.4, 'In Stock', 'https://example.com/turnips.jpg', 9, 1, 9, datetime('now'), datetime('now')),
+  ('Chickpeas', 'Nutritious chickpeas', 2.7, 'In Stock', 'https://example.com/chickpeas.jpg', 9, 2, 9, datetime('now'), datetime('now'));
+
+INSERT INTO Product (name, description, price, stock, imageUrl, userId, categoryId, locationId, createdAt, updatedAt)
+VALUES
+  ('Radishes', 'Freshly harvested radishes', 1.3, 'In Stock', 'https://example.com/radishes.jpg', 10, 1, 10, datetime('now'), datetime('now')),
+  ('Millet', 'Nutrient-dense millet', 2.5, 'In Stock', 'https://example.com/millet.jpg', 10, 2, 10, datetime('now'), datetime('now')),
+  ('Pomegranates', 'Ripe and juicy pomegranates', 3.8, 'In Stock', 'https://example.com/pomegranates.jpg', 10, 3, 10, datetime('now'), datetime('now')),
+  ('Zucchini', 'Green zucchini, farm fresh', 1.5, 'In Stock', 'https://example.com/zucchini.jpg', 10, 1, 10, datetime('now'), datetime('now')),
+  ('Buckwheat', 'Organic buckwheat seeds', 3.3, 'In Stock', 'https://example.com/buckwheat.jpg', 10, 2, 10, datetime('now'), datetime('now'));
+

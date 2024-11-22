@@ -1,6 +1,6 @@
 import getProductByQuery from "../../../controller/product/getProductByQuery";
 
-export async function action({ request }) {
+export async function loader({ request }) {
   const url = new URL(request.url);
   const searchQuery = url.searchParams.get("query") || "";
   const categoryId = url.searchParams.get("categoryId") || null;
@@ -16,8 +16,8 @@ export async function action({ request }) {
     maxDistance: parseInt(maxDistance),
   };
 
-  const _getProductByQuery = getProductByQuery(string);
-  const _getProductByQueryRes = (await _getProductByQuery).json();
+  const _getProductByQuery = await getProductByQuery(string);
+  const _getProductByQueryRes = await _getProductByQuery.json();
   if (_getProductByQueryRes) {
     return Response.json({
       status: 200,

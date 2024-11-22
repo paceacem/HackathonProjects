@@ -1,4 +1,4 @@
-import db from "../db.server";
+import db from "../../db.server";
 
 export default async function deleteCategory(input) {
   try {

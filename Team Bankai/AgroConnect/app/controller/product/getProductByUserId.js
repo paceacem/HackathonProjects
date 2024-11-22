@@ -4,7 +4,7 @@ export default async function getProductByUserId(userId) {
   try {
     const product = await db.product.findMany({
       where: {
-        userId,
+       userId: Number(userId),
       },
     });
     return Response.json({

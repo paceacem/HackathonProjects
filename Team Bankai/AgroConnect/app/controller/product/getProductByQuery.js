@@ -15,13 +15,13 @@ export default async function getProductByQuery({
         {
           name: {
             contains: query,
-            mode: "insensitive",
+           
           },
         },
         {
           description: {
             contains: query,
-            mode: "insensitive",
+           
           },
         },
       ],

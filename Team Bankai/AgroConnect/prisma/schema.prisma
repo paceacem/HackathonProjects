@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   name      String
   email     String    @unique
   phone     String    @unique
@@ -21,27 +21,27 @@ model User {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   name        String
   description String?
   price       Float
   stock       String?
   imageUrl    String?
-  locationId  Int?
+  locationId  String?
   location    Location? @relation(fields: [locationId], references: [id])
-  userId      Int
+  userId      String
   user        User      @relation(fields: [userId], references: [id])
-  categoryId  Int?
+  categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id])
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Location {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   latitude  Float
   longitude Float
-  userId    Int       @unique
+  userId    String    @unique
   user      User      @relation(fields: [userId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -49,8 +49,8 @@ model Location {
 }
 
 model Category {
-  id        Int       @id @default(autoincrement())
-  name      String
+  id        String    @id @default(uuid())
+  name      String    @unique
   products  Product[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
