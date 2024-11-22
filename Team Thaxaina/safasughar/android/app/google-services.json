@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1090978775476",
+    "project_id": "safasughar",
+    "storage_bucket": "safasughar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090978775476:android:41b4c742ee4102ac4cf2e1",
+        "android_client_info": {
+          "package_name": "com.thaxaina.safasughar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ8IyVf0RfU7T0q_nI8rfj43fso18FFVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
