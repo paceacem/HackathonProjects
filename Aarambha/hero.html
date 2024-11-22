@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Home | AgriConnect</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <style>
+        /* Add your styles here */
+        #profile-logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%; /* Make it circular */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar">
+        <nav id="bar">
+
+            <h1><span style="color: #2C6E49;">AGRI</span><span style="color: #685044;">CONNECT</span></h1>
+            <ul>
+                <li class='navli'><a class="active" href="">Home</a></li>
+                <li class='navli'><a href="forum.html">Forum</a></li>
+                <li class='navli'><a href="weather.html">weather</a></li>
+                <li class='navli'><a href="buysell.html">Buy/Sell</a></li>
+                <li class='navli'><a href="profile.html"><i class="fa-regular fa-user"></i></a></li>
+               
+                <li id="profile" class='navli' style="display: none;">
+                    <img id="profile-logo" src="img/logo.png" alt="Profile" onclick="toggleProfileMenu()" />
+                    <div id="profile-menu" style="display: none;">
+                        <p id="user-email">user@example.com</p>
+                        <a href="#" onclick="handleLogout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+
+            
+            <div class="ham" id="ham1" onclick="navig()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+            <div id="cross" class="ham" onclick="navig1()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+        </nav>
+    </div>
+
+    <div class="intro">
+        <img id="logoo" src="img/logo.png" alt="Load">
+        <h1>AGRICONNECT</h1>
+        <hr>
+        <h1 id="hii">Connecting Farmers.<br>Empowering Agriculture.</h1>
+    </div>
+
+    <footer>
+        <p>Copyright© AgriConnect | All rights reserved</p>
+    </footer>
+</body>
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/script.js"></script>
+<script>
+    // Function to check if the user is logged in
+    async function checkUserLoggedIn() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const userEmail = localStorage.getItem('userEmail');
+
+        if (isLoggedIn) {
+            document.getElementById('user-email').textContent = userEmail; // Display user email
+            document.getElementById('profile').style.display = 'block'; // Show profile
+            document.getElementById('auth-links').style.display = 'none'; // Hide login/signup links
+        } else {
+            document.getElementById('user-email').textContent = 'NOT LOGGED IN'; // Default message
+            document.getElementById('profile').style.display = 'none'; // Hide profile
+            document.getElementById('auth-links').style.display = 'block'; // Show login/signup links
+        }
+    }
+
+    // Call this function when the page loads
+    window.onload = function() {
+        console.log('Checking user login status...');
+        checkUserLoggedIn();
+    }
+
+    // Function to handle logout
+    function handleLogout() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+
+    // Function to toggle the visibility of the profile menu
+    function toggleProfileMenu() {
+        const profileMenu = document.getElementById('profile-menu');
+        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+</html>

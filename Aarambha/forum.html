@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2C6E49;
+            --secondary-color: #9DD2B2;
+            --background-color: #E8F1F2;
+            --text-color: #011627;
+            --text-secondary: #685044;
+            --error-color: #ff4444;
+            --border-color: #ccc;
+            --post-bg: #f7f9fc;
+            --post-hover: #edf1f7;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--background-color), var(--secondary-color));
+        }
+        
+        .forum {
+            width: 70%;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            float: left;
+        }
+        
+        .forum .post {
+            background: var(--post-bg);
+            border: none;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .forum .post:hover {
+            background: var(--post-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .forum .post .content {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .user-select {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .post-author {
+            color: var(--primary-color);
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            background: rgba(44, 110, 73, 0.1);
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .post {
+            background: var(--post-bg);
+            border: none;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(1, 22, 39, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 68, 68, 0.9);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: var(--error-color);
+            transform: scale(1.05);
+        }
+
+        .post h2 {
+            color: var(--text-color);
+            margin: 0 0 15px 0;
+            font-size: 1.5em;
+            font-weight: 700;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        .post-image {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-left: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .post-image:hover {
+            transform: scale(1.05);
+        }
+
+        .post-date {
+            color: #888;
+            font-size: 0.85em;
+            margin-left: 10px;
+            font-style: italic;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            max-height: 150px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 110, 73, 0.2);
+        }
+
+        .file-upload {
+            display: inline-block;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border: 2px dashed var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            background: rgba(44, 110, 73, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary-color), #245a3b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 110, 73, 0.3);
+        }
+
+        .follow-button {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 8px 20px;
+            margin-top: 12px;
+            border-radius: 20px;
+        }
+
+        .follow-button.followed {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .post-form {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            width: 25%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .main-content {
+            margin-top: 100px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .login-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #post {
+            margin-top: 0;
+        }
+    </style>
+    
+    
+    <script>
+        let currentUser = null;
+
+        // Function to check if the user is logged in
+        async function checkUserLoggedIn() {
+            try {
+                const response = await fetch('/me', {
+                    method: 'GET',
+                    credentials: 'include' // Include cookies in the request
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    currentUser = data.user.username; // Store the username
+                    document.getElementById('userDisplay').textContent = `Logged in as: ${currentUser}`; // Update the UI
+                } else {
+                    console.log('User is not logged in');
+                    document.getElementById('userDisplay').textContent = 'Not logged in';
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        }
+
+        // Call this function when the page loads
+        window.onload = function() {
+            checkUserLoggedIn();
+            // Load existing posts from sessionStorage when page loads
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            posts.forEach(postData => {
+                createPostElement(postData.heading, postData.content, postData.author, postData.follows || [], postData.agrees || [], postData.replies || [], postData.date || new Date().toLocaleString(), postData.image);
+            });
+
+            // Add file upload listeners
+            document.querySelectorAll('.file-upload input[type="file"]').forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const fileName = e.target.files[0]?.name;
+                    const label = this.nextElementSibling;
+                    label.textContent = fileName || 'No file chosen';
+                });
+            });
+        }
+
+        function createPostElement(heading, content, author, follows = [], agrees = [], replies = [], date, image) {
+            var post = document.createElement('div');
+            post.className = 'post';
+            const authorDisplay = author === currentUser ? 'You' : author;
+            const isFollowed = follows.includes(currentUser);
+            const isAgreed = agrees.includes(currentUser);
+            const followButtonText = isFollowed ? 'Unfollow' : 'Follow';
+            const agreeButtonText = isAgreed ? 'Disagree' : 'Agree';
+            const followButtonClass = isFollowed ? 'follow-button followed' : 'follow-button';
+            
+            const followCount = follows.length;
+            const agreeCount = agrees.length;
+            const followsHtml = followCount > 0 ? 
+                `<span class="follow-count">
+                    ${followCount} ${followCount === 1 ? 'follower' : 'followers'}
+                    <span class="follow-users">Followed by ${follows.join(', ')}</span>
+                 </span>` : 
+                'No followers yet';
+            
+            const agreesHtml = agreeCount > 0 ?
+                `<span class="agree-count">
+                    ${agreeCount} ${agreeCount === 1 ? 'agreement' : 'agreements'}
+                    <span class="agree-users">Agreed by ${agrees.join(', ')}</span>
+                </span>` :
+                'No agreements yet';
+
+            const repliesHtml = replies.map(reply => `
+                <div class="post">
+                    <div class="post-author">Reply by: ${reply.author === currentUser ? 'You' : reply.author}
+                        <span class="post-date">${reply.date || 'Unknown date'}</span>
+                    </div>
+                    <div class="content">
+                        <div>${reply.content}</div>
+                        ${reply.image ? `<img src="${reply.image}" class="post-image" alt="Reply image">` : ''}
+                    </div>
+                    ${reply.author === currentUser ? 
+                        `<button class="delete-button" onclick="deleteReply('${heading}', '${content}', '${author}', '${reply.content}')">Delete</button>` 
+                        : ''}
+                </div>
+            `).join('');
+
+            post.innerHTML = `
+                ${author === currentUser ? 
+                    `<button class="delete-button" onclick="deletePost('${heading}', '${content}', '${author}')">Delete</button>` 
+                    : ''}
+                <div class="post-author">Posted by: ${authorDisplay}
+                    <span class="post-date">${date}</span>
+                </div>
+                <h2>${heading}</h2>
+                <div class="content">
+                    <div>${content}</div>
+                    ${image ? `<img src="${image}" class="post-image" alt="Post image">` : ''}
+                </div>
+                <button class="${followButtonClass}" onclick="toggleFollow('${heading}', '${content}', '${author}')">${followButtonText}</button>
+                <button class="agree-button" onclick="toggleAgree('${heading}', '${content}', '${author}')">${agreeButtonText}</button>
+                <button class="reply-button" onclick="toggleReplyForm('${heading}', '${content}', '${author}')">Reply</button>
+                <button onclick="toggleReplies('${heading}')" id="toggleBtn-${heading}">Show Replies (${replies.length})</button>
+                <div class="follows-info">
+                    <i class="fas fa-user-plus"></i>
+                    ${followsHtml}
+                </div>
+                <div class="agrees-info">
+                    <i class="fas fa-check"></i>
+                    ${agreesHtml}
+                </div>
+                <div class="reply-form" id="replyForm-${heading}" style="display: none;">
+                    <textarea id="replyContent-${heading}" placeholder="Write your reply..."></textarea>
+                    <label class="file-upload">
+                        <i class="fas fa-paperclip"></i>
+                        <input type="file" id="replyImage-${heading}" accept="image/*">
+                        <span class="file-name">No file chosen</span>
+                    </label>
+                    <div class="error-message" id="replyError-${heading}">Please type something before submitting</div>
+                    <button onclick="addReply('${heading}', '${content}', '${author}')">Submit Reply</button>
+                </div>
+                <div class="replies" id="replies-${heading}" style="display: none;">
+                    ${repliesHtml}
+                </div>
+            `;
+            document.getElementById('forum').appendChild(post);
+        }
+
+        function toggleReplies(heading) {
+            const repliesDiv = document.getElementById(`replies-${heading}`);
+            const toggleBtn = document.getElementById(`toggleBtn-${heading}`);
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            const post = posts.find(p => p.heading === heading);
+            const replyCount = post.replies ? post.replies.length : 0;
+            
+            if (repliesDiv.style.display === 'none') {
+                repliesDiv.style.display = 'block';
+                toggleBtn.textContent = `Hide Replies (${replyCount})`;
+            } else {
+                repliesDiv.style.display = 'none';
+                toggleBtn.textContent = `Show Replies (${replyCount})`;
+            }
+        }
+
+        function deletePost(heading, content, author) {
+            if (author === currentUser) {
+                const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+                const postIndex = posts.findIndex(p => p.heading === heading && p.content === content && p.author === author);
+                if (postIndex !== -1) {
+                    posts.splice(postIndex, 1);
+                    sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                    refreshPosts();
+                }
+            }
+        }
+
+        function deleteReply(heading, content, author, replyContent) {
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            const postIndex = posts.findIndex(p => p.heading === heading && p.content === content && p.author === author);
+            
+            if (postIndex !== -1) {
+                const replyIndex = posts[postIndex].replies.findIndex(r => 
+                    r.content === replyContent && r.author === currentUser
+                );
+                if (replyIndex !== -1) {
+                    posts[postIndex].replies.splice(replyIndex, 1);
+                    sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                    refreshPosts();
+                }
+            }
+        }
+
+        function toggleReplyForm(heading, content, author) {
+            const replyForm = document.getElementById(`replyForm-${heading}`);
+            replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addReply(heading, content, author) {
+            const replyContent = document.getElementById(`replyContent-${heading}`).value;
+            const replyImage = document.getElementById(`replyImage-${heading}`).files[0];
+            const errorElement = document.getElementById(`replyError-${heading}`);
+            
+            if (!replyContent.trim()) {
+                errorElement.style.display = 'block';
+                return;
+            }
+            
+            errorElement.style.display = 'none';
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            const postIndex = posts.findIndex(p => p.heading === heading && p.content === content && p.author === author);
+            
+            if (postIndex !== -1) {
+                if (!posts[postIndex].replies) {
+                    posts[postIndex].replies = [];
+                }
+
+                if (replyImage) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        posts[postIndex].replies.push({
+                            author: currentUser,
+                            content: replyContent,
+                            image: e.target.result,
+                            date: new Date().toLocaleString()
+                        });
+                        sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                        refreshPosts();
+                    };
+                    reader.readAsDataURL(replyImage);
+                } else {
+                    posts[postIndex].replies.push({
+                        author: currentUser,
+                        content: replyContent,
+                        date: new Date().toLocaleString()
+                    });
+                    sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                    refreshPosts();
+                }
+            }
+        }
+
+        function toggleFollow(heading, content, author) {
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            const postIndex = posts.findIndex(p => p.heading === heading && p.content === content && p.author === author);
+            
+            if (postIndex !== -1) {
+                if (!posts[postIndex].follows) {
+                    posts[postIndex].follows = [];
+                }
+                
+                const followIndex = posts[postIndex].follows.indexOf(currentUser);
+                if (followIndex === -1) {
+                    posts[postIndex].follows.push(currentUser);
+                } else {
+                    posts[postIndex].follows.splice(followIndex, 1);
+                }
+                
+                sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                refreshPosts();
+            }
+        }
+
+        function toggleAgree(heading, content, author) {
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            const postIndex = posts.findIndex(p => p.heading === heading && p.content === content && p.author === author);
+            
+            if (postIndex !== -1) {
+                if (!posts[postIndex].agrees) {
+                    posts[postIndex].agrees = [];
+                }
+                
+                const agreeIndex = posts[postIndex].agrees.indexOf(currentUser);
+                if (agreeIndex === -1) {
+                    posts[postIndex].agrees.push(currentUser);
+                } else {
+                    posts[postIndex].agrees.splice(agreeIndex, 1);
+                }
+                
+                sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                refreshPosts();
+            }
+        }
+
+        function addPost() {
+            var heading = document.getElementById('postHeading').value;
+            var content = document.getElementById('postContent').value;
+            var imageFile = document.getElementById('postImage').files[0];
+            
+            if (!heading.trim() || !content.trim() || !currentUser) {
+                document.getElementById('postError').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('postError').style.display = 'none';
+            const date = new Date().toLocaleString();
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create and add post element to DOM with image
+                    createPostElement(heading, content, currentUser, [], [], [], date, e.target.result);
+
+                    // Save to sessionStorage
+                    const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+                    posts.push({ heading, content, author: currentUser, follows: [], agrees: [], replies: [], date, image: e.target.result });
+                    sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                // Create and add post element to DOM without image
+                createPostElement(heading, content, currentUser, [], [], [], date);
+
+                // Save to sessionStorage
+                const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+                posts.push({ heading, content, author: currentUser, follows: [], agrees: [], replies: [], date });
+                sessionStorage.setItem('forumPosts', JSON.stringify(posts));
+            }
+
+            // Clear input fields
+            document.getElementById('postHeading').value = '';
+            document.getElementById('postContent').value = '';
+            document.getElementById('postImage').value = '';
+            document.querySelector('.file-name').textContent = 'No file chosen';
+        }
+
+        function refreshPosts() {
+            document.getElementById('forum').innerHTML = `
+                <div class="post">
+                    <h2>Discussion Forum</h2>
+                    <p>Feel free to start a new thread or join an existing one.</p>
+                </div>
+            `;
+            const posts = JSON.parse(sessionStorage.getItem('forumPosts') || '[]');
+            posts.forEach(postData => {
+                createPostElement(postData.heading, postData.content, postData.author, postData.follows || [], postData.agrees || [], postData.replies || [], postData.date, postData.image);
+            });
+        }
+
+        function changeUser() {
+            currentUser = document.getElementById('userSelect').value;
+            refreshPosts();
+        }
+
+        function toggleLoginDropdown() {
+            document.querySelector('.login-dropdown').classList.toggle('show');
+        }
+    </script>
+</head>
+<body>
+    <div id="navbar">
+        <nav id="bar">
+            <h1><span style="color: #2C6E49;">AGRI</span><span style="color: #685044;">CONNECT</span></h1>
+            <ul>
+                <li class='navli'><a  href="hero.html">Home</a></li>
+                <li class='navli'><a class="active" href="forum.html">Forum</a></li>
+                <li class='navli'><a href="weather.html">weather</a></li>
+                <li class='navli'><a href="buysell.html">Buy/Sell</a></li>
+                <li id="sign" class='navli'>
+                    <a href="#" onclick="toggleLoginDropdown()">Sign in</a>
+                    <a href="signup.html">Sign up</a>
+                </li>
+                <li class='navli'><a href="profile.html"><i class="fa-regular fa-user"></i></a></li>
+            </ul>
+            <div class="ham" id="ham1" onclick="navig()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div id="cross" class="ham" onclick="navig1()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="login-dropdown">
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <select id="userSelect" class="user-select" onchange="changeUser()">
+        <option value="Sulav">Sulav</option>
+        <option value="Sushan">Sushan</option>
+        <option value="Unik">Unik</option>
+        <option value="Supreme">Supreme</option>
+        <option value="Ram">Ram</option>
+    </select>
+
+    <div class="main-content">
+        <div id="forum" class="forum">
+            <div class="post">
+                <h2>Discussion Forum</h2>
+                <p>Feel free to start a new thread or join an existing one.</p>
+            </div>
+        </div>
+
+        <div class="post-form">
+            <div id="post">
+                <input type="text" id="postHeading" placeholder="Enter post heading">
+                <textarea id="postContent" placeholder="Enter your post here"></textarea>
+                <label class="file-upload">
+                    <i class="fas fa-paperclip"></i>
+                    <input type="file" id="postImage" accept="image/*">
+                    <span class="file-name">No file chosen</span>
+                </label>
+                <div class="error-message" id="postError">Please fill in both heading and content before posting</div>
+                <button onclick="addPost()">Add Post</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
