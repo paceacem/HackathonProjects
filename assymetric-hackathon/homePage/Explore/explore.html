@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Explorer - Nepal</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: #721b9d;
+        }
+
+        .main-heading {
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            color: #f6dd00fa;
+            padding: 50px 10px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .image-button-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 40px; 
+            margin: 50px 0;
+            justify-items: center; 
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .image-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 220px; 
+            height: 150px; 
+            border: 3px solid #f6c900fa; 
+            border-radius: 12px; 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+            text-align: center;
+            background-color: #ffffff; 
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-button:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        .image-button img {
+            width: 100%; 
+            height: 110px; 
+            object-fit: cover; 
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .image-button span {
+            display: block;
+            padding: 10px;
+            font-size: 18px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #721b9d;
+            background: #f6c900fa;
+            width: 100%;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .main-heading {
+                font-size: 42px;
+            }
+
+            .image-button-container { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 40px; 
+            }
+
+            .image-button {
+                width: 160px; 
+                height: 120px; 
+            }
+
+            .image-button img {
+                height: 80px; 
+            }
+
+            .image-button span {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-heading">Explore <br/> Local Nepal</h1>
+
+    <div class="image-button-container">
+       
+        <div class="image-button" onclick="handleClick('Temples')">
+            <a href = "explorers/index.html">
+                <img src="temple2.jpg" alt="Temple">
+                <span>Temples</span>
+            </a>
+        </div>
+
+        
+        <div class="image-button" onclick="handleClick('Natural Places')">
+            <a href = "explorers/index1.html">
+            <img src="images.jpeg" alt="Natural Places">
+            <span>Natural Places</span></a>
+        </div>
+
+        
+        <div class="image-button" onclick="handleClick('Historical Places')">
+            <a href = "explorers/index2.html">
+            <img src="historical.jpg" alt="Historical Places">
+            <span>Historical Places</span></a>
+        </div>
+
+        
+        <div class="image-button" onclick="handleClick('Adventure Sports')">
+            <a href = "explorers/index3.html">
+            <img src="bunjee.jpeg" alt="Adventure Sports">
+            <span>Adventure Sports</span></a>
+        </div>
+    </div>
+
+</body>
+</html>
