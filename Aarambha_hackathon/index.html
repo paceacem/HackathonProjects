@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lets Explore Nepal</title>
+
+
+  <!-- <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml"> -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+
+    <div class="overlay" data-overlay></div>
+
+    <div class="header-top">
+      <div class="container">
+
+        <a href="tel:+977" class="helpline-box">
+
+          <div class="icon-box">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+
+          <div class="wrapper">
+            <p class="helpline-title">For Further Inquires :</p>
+
+            <p class="helpline-number">+977(100)</p>
+          </div>
+
+        </a>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/Nepal logo.avif" alt="Lets Travel">
+        </a>
+
+        <div class="header-btn-group">
+
+          
+
+          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <div class="container">
+
+        <ul class="social-list">
+
+          <li>
+            <a href="https://www.facebook.com/aarambha.acem/" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.youtube.com/watch?v=wsXMXgoWHJk" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        <nav class="navbar" data-navbar>
+
+          <div class="navbar-top">
+
+            <a href="#" class="logo">
+              <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
+            </a>
+
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+          </div>
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="#home" class="navbar-link" data-nav-link>Home</a>
+            </li>
+
+            <li>
+              <a href="#footer" class="navbar-link" data-nav-link>about us</a>
+            </li>
+
+            <li>
+              <a href="#destination" class="navbar-link" data-nav-link>destination</a>
+            </li>
+
+            <li>
+              <a href="#explore" class="navbar-link" data-nav-link>explore</a>
+            </li>
+
+            <li>
+              <a href="#gallery" class="navbar-link" data-nav-link>gallery</a>
+            </li>
+
+            <li>
+              <a href="#footer" class="navbar-link" data-nav-link>contact us</a>
+            </li>
+
+          </ul>
+
+        </nav>
+
+        <button class="btn btn-primary">
+          <input type="text" placeholder="search"required/>
+        </button>
+
+
+        <button class="search-btn" aria-label="Search">
+          <ion-icon name="search"></ion-icon>
+        </button>
+
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <div id="chatbot-icon" class="chatbot-icon">
+    <img src="/Aarambha_hackathon/assets/images/chat.png" alt="Chat Icon" />
+  </div>
+  <div id="chatbot-container" class="chatbot-container">
+    <div class="chat-header">
+      <h3>Nepal Travel Assistant</h3>
+      <button id="close-chat">X</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input
+        type="text"
+        id="user-input"
+        placeholder="Ask about travel in Nepal..."
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home">
+        <div class="container">
+
+          <h2 class="h1 hero-title">Journey To Explore Nepal</h2>
+
+          <p class="hero-text">
+            Nepal is a land of stunning natural beauty and rich cultural heritage, where you can explore the majestic Himalayas, ancient temples, and diverse wildlife. Whether you are looking for a challenging trek, a spiritual journey, or a relaxing getaway, Nepal has something for everyone.
+          </p>
+
+          <div class="btn-group">
+            <button class="btn btn-primary">Learn more</button>
+
+          </div>
+
+        </div>
+      </section>
+
+
+       <!-- 
+        - #TOUR SEARCH
+      -->
+
+      <section class="tour-search">
+        <div class="container">
+          <form action="" class="tour-search-form">
+            <div class="date">
+              <div class="date-item">
+                <p id="currentDateTime"> </p>
+              </div>
+              <div class="event">
+                <p>Aarambha 2024</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+        <!-- - #POPULAR --> 
+    
+
+      <section class="popular" id="destination">
+        <div class="container">
+
+          <h2 class="h2 section-title">Popular destination</h2>
+
+          <p class="section-text">
+           These are some most popular, mostly visited and preferred place by visitor.
+          </p>
+
+          <ul class="popular-list">
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="./assets/images/Pashupati.jpg" alt="Pashupati, KTM" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">KTM</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Pashupatinath</a>
+                  </h3>
+
+                  <p class="card-text">
+                   Hindu Pilgrimage 
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="./assets/images/Dharahara.jpeg" alt="Dharahara,KTM" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">KTM</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Dharahara</a>
+                  </h3>
+
+                  <p class="card-text">
+                    Rebuilt glory of Nepal
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="./assets/images/Patan.jpg" alt="Patan Durbar Square" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">KTM</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Patan Durbar Square</a>
+                  </h3>
+
+                  <p class="card-text">
+                     Residence of Malla Kings
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <button class="btn btn-primary">More destintion</button>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PACKAGE
+      -->
+
+      <section class="explore" id="explore">
+        <div class="container">
+
+        
+
+          <h2 class="h2 section-title">Checkout Popular Places</h2>
+
+          <p class="section-text">
+            Some of the hidden treasure of Kathmandu.
+          </p>
+
+          <ul class="package-list">
+
+              <li>
+                <div class="package-card">
+
+                  <figure class="card-banner">
+                    <img src="./assets/images/bodhnath-stupa.jpg" alt="Experience buddhism" loading="lazy">
+                  </figure>
+
+                  <div class="card-content">
+
+                    <h3 class="h3 card-title">Additional and must visit famous place</h3>
+
+                    <p class="card-text">
+                      Boudha is one of the most imposing landmarks in Kathmandu, visible as soon as you land at the Tribhuvan International Airport. It is the largest stupa in the Kathmandu Valley and is the center of Himalayan Buddhism. 
+                    </p>
+
+                    <ul class="card-meta-list">
+
+                      <li class="card-meta-item">
+                        <div class="meta-box">
+                          <ion-icon name="time"></ion-icon>
+
+                          <p class="text">3Hrs</p>
+                        </div>
+                      </li>
+
+                      <li class="card-meta-item">
+                        <div class="meta-box">
+                          <ion-icon name="location"></ion-icon>
+
+                          <p class="text">KTM</p>
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                  <div class="card-price">
+
+                    <div class="wrapper">
+
+                      <p class="reviews">(25 reviews)</p>
+
+                      <div class="card-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                      </div>
+
+                    </div>
+
+                    <p class="price">
+                      $4
+                      <span>/ per person</span>
+                    </p>
+
+                    <button class="btn btn-secondary">
+                      <a href="https://en.wikipedia.org/wiki/Boudha_Stupa" target="_blank" rel="noopener noreferrer">Info</a>
+
+                     </button>
+                  
+                  </div>
+
+                </div>
+              </li>
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/bhaktapur-rainy.jpg" alt="Bhaktapur durbar square" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Bhaktapur durbar square</h3>
+
+                  <p class="card-text">
+                    Bhaktapur durbar square is home to multiple temples and WOW monuments. And inside it, there is another tiny space named Bhaktapur Durbar Square that embodies the richness of Newari art, architecture, and history.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">2Hrs</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">Bhaktapur durbar square</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(20 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    $3
+                    <span>/ per person</span>
+                  </p>
+
+                  <button class="btn btn-secondary">
+                    <a href="https://en.wikipedia.org/wiki/Bhaktapur_Durbar_Square" target="_blank" rel="noopener noreferrer">Info</a>
+                  </button>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/taudaha.jpeg" alt="Santorini Island's Weekend Vacation" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Taudaha</h3>
+
+                  <p class="card-text">
+                    Taudaha is a religious water body. People come to pay homage to Karkat Naag and his wife with the belief that they still reside there.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">4Hrs</p>
+                      </div>
+                    </li>
+
+                    
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">KTM</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(40 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    $1
+                    <span>/ per person</span>
+                  </p>
+
+                  <button class="btn btn-secondary">
+                    <a href="https://en.wikipedia.org/wiki/Taudaha_Lake" target="_blank" rel="noopener noreferrer">Info</a>
+
+                  </button>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+
+        </div>
+      </section>
+  <!-- 
+      - #GALLERY
+    -->
+    
+    <section class="gallery" id="gallery">
+      <div class="container">
+        
+        <h2 class="h2 section-title">Photo's From Travellers</h2>
+    
+        <ul class="gallery-list">
+          <!-- First Row -->
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/Kathmandu.jpg" alt="Kathmandu">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/Nepal.jpg" alt="Nepal">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/Patan.jpg" alt="Gallery">
+            </figure>
+          </li>
+          <!-- Second Row -->
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/temple.jpg" alt="Temple">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/429.jpg" alt="Gallery">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/Pashupati.jpg" alt="Nepal">
+            </figure>
+          </li>
+          <!-- Third Row -->
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/gallery-1.jpg" alt="Gallery">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/Dharahara.jpeg" alt="Temple">
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure class="gallery-image">
+              <img src="./assets/images/gallery-3.jpg" alt="Gallery">
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/Nepal logo.avif">
+          </a>
+
+        </div>
+
+        <div class="footer-contact">
+
+          <h4 class="contact-title">Contact Us</h4>
+
+          <p class="contact-text">
+            Feel free to contact and reach us !!
+          </p>
+
+          <ul>
+
+            <li class="contact-item">
+              <ion-icon name="call-outline"></ion-icon>
+
+              <a  class="contact-link">+977 988888888</a>
+            </li>
+
+            <li class="contact-item">
+              <ion-icon name="mail-outline"></ion-icon>
+
+              <a class="contact-link">tourism.com</a>
+            </li>
+
+            <li class="contact-item">
+              <ion-icon name="location-outline"></ion-icon>
+              <address>Kalanki, Kathmandu Nepal</address>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a class="go-top" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
