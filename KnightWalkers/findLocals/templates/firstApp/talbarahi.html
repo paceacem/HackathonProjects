@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tal Barahi Temple</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* For fixed navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1030;
+        background-color: #ffd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        padding: 80px 5px 5px 5px; /* Adjusted padding to make space for fixed navbar */
+      }
+
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("{% static 'img/talbarahai.jpg' %}") no-repeat center center;
+        background-size: cover;
+        z-index: -1;
+      }
+
+      /* Darker Overlay */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
+        z-index: 0;
+      }
+
+      /* Content Section */
+      .content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        text-align: justify;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1, h2 {
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      p {
+        color: #f8f9fa; /* Light color for better readability */
+        font-size: 16px;
+        line-height: 1.6;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for text */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffd; box-shadow: 0 0px 0px rgba(0,0,0,0.1);">
+        
+        <a class="navbar-brand" href="#" style="font-family: 'Sans-serif'; font-weight: bold; display: flex; align-items: center;">
+            <img src="{%static 'img/logo.png'%}" alt="Find Local Logo" style="height: 40px; margin-right: 8px;">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/forms/" style="font-weight: 500;">Be a local</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: 500;">About Us</a>
+                </li>
+            </ul>
+            
+            <div class="d-flex align-items-center ml-3">
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" 
+                               style="border-radius: 20px;">
+                        <button class="btn btn-outline-secondary" type="submit" style="border-radius: 20px;">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <a href="{%url 'loginPage'%}" class="nav-link ml-2" style="font-size: 2.5rem;">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="background"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Tal Barahi Temple</h1>
+      <p>
+        The Tal Barahi Temple, also known as the Lake Temple or Varahi Temple,
+        is a two-story pagoda temple located on a small island in Pokhara's
+        Phewa Lake. Dedicated to Goddess Varahi, an avatar of Goddess Durga,
+        this temple attracts both Hindu and Buddhist devotees.
+      </p>
+      <p>
+        The temple, built by King Kulmandhan Shah, features traditional Nepali
+        pagoda architecture. Accessible only by boat, it is a serene and
+        spiritual retreat. Thousands of devotees visit during Durga Puja and on
+        Saturdays to offer prayers and seek blessings.
+      </p>
+      <p>
+        Set against the stunning backdrop of the Annapurna mountain range, the
+        temple is a must-visit for pilgrims, heritage enthusiasts, and nature
+        lovers alike. A visit to the Tal Barahi Temple offers a glimpse into
+        Nepali culture, art, and spirituality.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Local</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* For fixed nav-bar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1030;
+        background-color: #ffd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        padding: 5px;
+      }
+
+      /* Styling for the background image section */
+      .background-image {
+        background-image: url("{% static 'img/Swayambhunath_Stupa.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Styling for the text over the background */
+      .background-text {
+        color: white;
+        font-size: 44px;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+        text-align: center;
+      }
+
+      /* Card Styling */
+      .card-body {
+        padding: 20px;
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #ffd; box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1)"
+    >
+      <a
+        class="navbar-brand"
+        href="#"
+        style="
+          font-family: 'Sans-serif';
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+        "
+      >
+        <img
+          src="{% static 'img/logo.png' %}"
+          alt="Find Local Logo"
+          style="height: 40px; margin-right: 8px"
+        />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/forms/" style="font-weight: 500"
+              >Be a local</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'index' %}"
+              style="font-weight: 500"
+              >About Us</a
+            >
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center ml-3">
+          <form
+            class="form-inline my-2 my-lg-0"
+            action="{% url 'searchPage' %}"
+            method="get"
+          >
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="search"
+                name="query"
+                placeholder="Search"
+                aria-label="Search"
+                style="border-radius: 20px"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="submit"
+                style="border-radius: 20px"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          <a
+            href="{% url 'loginPage' %}"
+            class="nav-link ml-2"
+            style="font-size: 2.5rem"
+          >
+            <i class="fas fa-user-circle"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search Results Section -->
+    <div class="container">
+      <h2>Search Results</h2>
+      <ul>
+        {% for result in results %}
+        <li>{{ result.name }} - {{ result.location }}</li>
+        {% empty %}
+        <p>No results found.</p>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Background Image Section with Text -->
+    <div class="background-image">
+      <div class="background-text">
+        <h1>LIVE WITH LOCALS</h1>
+        <h2 style="font-size: 30px">Travel Explore Shop</h2>
+      </div>
+    </div>
+
+    <!-- Suggestion Section -->
+    <div class="container my-5">
+      <h2 class="text-center mb-4" style="font-size: 36px">
+        Local Shops Around You
+      </h2>
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img
+              src="{% static 'img/pottery.jpg' %}"
+              class="card-img-top"
+              alt="Pottery"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Pottery</h5>
+              <p class="card-text">
+                Discover the authentic pottery of the local artisan.
+              </p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img
+              src="{% static 'img/talbarahai.jpg' %}"
+              class="card-img-top"
+              alt="Cultural Sites"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Cultural Sites</h5>
+              <p class="card-text">
+                Explore the rich history of Tal Barahi Mandir.
+              </p>
+              <a href="{% url 'talbarahipage' %}" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="bg-yellow-100 px-14">
+      <div class="font-bold text-3xl font-serif text-center">Experiences</div>
+      <div class="py-4"></div>
+      <div class="grid grid-cols-4 px-3 place-items-start gap-4">
+        <div
+          class="flex flex-col w-80 h-48 items-center justify-center"
+          style="
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url('{% static 'img/wood-carving-nepal.webp' %}');
+          "
+        >
+          <div class="background-text text-white">
+            <h1 class="pt-20 font-bold text-3xl">Wood Carving</h1>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col w-80 h-48 items-center justify-center"
+          style="
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url('{% static 'img/cycling.jpg' %}');
+          "
+        >
+          <div class="background-text text-white">
+            <h1 class="pt-20 font-bold text-3xl">Cycling</h1>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col w-80 h-[94%] items-center justify-center"
+          style="
+            background-repeat: no-repeat;
+            background-size: 320px 192px;
+            background-image: url('{% static 'img/hiking2.jpg' %}');
+          "
+        >
+          <div class="background-text text-white">
+            <h1 class="pt-20 font-bold text-3xl">Hiking</h1>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col w-80 h-[100%] items-center justify-center"
+          style="
+            background-repeat: no-repeat;
+            background-size: 320px 180px;
+            background-image: url('{% static 'img/safari.jpg' %}');
+          "
+        >
+          <div class="background-text text-white">
+            <h1 class="pt-20 font-bold text-3xl">Wildlife Safari</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer with the same background color as navbar -->
+    <div style="background-color: #ffd; height: 50px"></div>
+
+    <!-- Footer Section -->
+    <footer class="relative bg-gray-800 text-white">
+      <div class="relative">
+        <img
+          src="{% static 'img/manang.png' %}"
+          alt="Manang"
+          class="w-full object-cover h-60"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 flex flex-col justify-start text-center">
+          <div
+            class="container mx-auto px-6 grid grid-cols-4 gap-8 text-sm md:text-base"
+          >
+            <!-- Logo -->
+            <div class="flex">
+              <img src="{% static 'img/logo.png' %}" alt="" class="h-16" />
+            </div>
+
+            <!-- Company Info -->
+            <div>
+              <h3 class="text-3xl font-semibold mb-8">Company</h3>
+              <ul>
+                <li class="py-3">
+                  <a href="#" class="hover:text-yellow-400">Home</a>
+                </li>
+                <li class="py-3">
+                  <a href="#" class="hover:text-yellow-400">About</a>
+                </li>
+                <li class="py-3">
+                  <a href="#" class="hover:text-yellow-400">Help</a>
+                </li>
+                <li class="py-3">
+                  <a href="#" class="hover:text-yellow-400">Privacy</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+              <h3 class="text-3xl font-semibold mb-8">Contact</h3>
+              <ul>
+                <li class="py-3">
+                  <a
+                    href="mailto:findlocal@example.com"
+                    class="hover:text-yellow-400"
+                    >Email</a
+                  >
+                </li>
+                <li class="py-3">
+                  <a href="tel:+977123456789" class="hover:text-yellow-400"
+                    >Phone</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-8 text-center">
+        <p>Copyright &copy; 2024 Find Local</p>
+      </div>
+    </footer>
+  </body>
+</html>

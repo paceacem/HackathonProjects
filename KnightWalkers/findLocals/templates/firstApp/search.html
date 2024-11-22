@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Places</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <style>
+      .map-container {
+        width: 100%;
+        height: 500px;
+        border: 2px solid #ddd;
+        margin-top: 20px;
+      }
+      .error-message {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #ffd; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)"
+    >
+      <a
+        class="navbar-brand"
+        href="#"
+        style="font-family: 'Sans-serif'; font-weight: bold"
+      >
+        <img
+          src="{% static 'img/logo.png' %}"
+          alt="Find Local Logo"
+          style="height: 40px"
+        />
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/forms/">Be a local</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Search Form -->
+    <div class="container my-4">
+      <h2 class="text-center">Search for Places</h2>
+      <form id="search-form" class="form-inline justify-content-center my-4">
+        <input
+          id="place-input"
+          type="text"
+          class="form-control mr-2"
+          placeholder="Enter a place name"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      <p
+        id="error-message"
+        class="error-message text-center"
+        style="display: none"
+      >
+        Place not found. Please try again.
+      </p>
+      <div id="map" class="map-container"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+      const form = document.getElementById("search-form");
+      const placeInput = document.getElementById("place-input");
+      const mapContainer = document.getElementById("map");
+      const errorMessage = document.getElementById("error-message");
+      let map;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const place = placeInput.value.trim();
+        if (place) {
+          searchLocation(place);
+        }
+      });
+
+      function initializeMap(lat, lon) {
+        if (map) {
+          map.setView([lat, lon], 14);
+        } else {
+          map = L.map(mapContainer).setView([lat, lon], 14);
+          L.tileLayer(
+            "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=bb6c0970-97b8-43d9-8ae9-bf88586b87f7",
+            {
+              maxZoom: 20,
+            }
+          ).addTo(map);
+        }
+        L.marker([lat, lon]).addTo(map);
+      }
+
+      async function searchLocation(place) {
+        errorMessage.style.display = "none";
+        try {
+          const response = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${place}&limit=1&appid=YOUR_OPENWEATHERMAP_API_KEY`
+          );
+          const data = await response.json();
+
+          if (data.length > 0) {
+            const { lat, lon } = data[0];
+            initializeMap(lat, lon);
+          } else {
+            throw new Error("Place not found");
+          }
+        } catch (error) {
+          errorMessage.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
