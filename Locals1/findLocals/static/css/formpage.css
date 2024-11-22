@@ -1,0 +1,50 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: scroll;
+    font-family: Arial, sans-serif;
+    padding-top: 80px;
+  }
+  
+  
+  .background {
+    position: relative; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    animation: backgroundSlide 15s infinite; 
+    z-index: -1; 
+  }
+  .navbar {
+    margin-bottom: 0 
+}
+  @keyframes backgroundSlide {
+    0% {
+      background-image: url('../img/swayambu.jpg');
+    }
+    33% {
+      background-image: url('../img/pokhara.jpg');
+    }
+    66% {
+      background-image: url('../img/mustang.png');
+    }
+    100% {
+      background-image: url('../img/swayambu.jpg'); 
+    }
+  }
+
+  .background-container {
+    position: fixed;
+    top: 56px; 
+    left: 0;
+    width: 90%;
+    height: calc(100vh - 70px); 
+    z-index: -1; 
+    overflow: hidden; 
+}
+
